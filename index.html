@@ -1,5 +1,8 @@
 <html lang="en">
   <head>
+    <title>
+      Credit Scoring 
+    </title>
     <meta charset="utf-8"><!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     
@@ -40,10 +43,23 @@
               <label for="pwd">Balance before recharge:</label>
               <input type="number" class="form-control" placeholder="" id="balance_before_recharge">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button class="btn btn-primary" onclick="send_user_information()">Submit</button>
           </form></div>
           <div class="card-footer">Credit Score: 0</div>
         </div>
       </div>
+      <script>
+        function send_user_information(){
+          let number_of_recharge = document.getElementById("number_of_recharge").value ;
+          let age_of_sim = document.getElementById("age_of_sim").value ;
+          let balance_before_recharge = document.getElementById("balance_before_recharge").value ;
+
+          $.post( "test.php", { number_of_recharge: "John", time: "2pm" }).done(function( data ) {
+            alert( "Data Loaded: " + data );
+          });
+
+
+        }
+      </script>
   </body>
 </html>
