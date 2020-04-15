@@ -58,7 +58,7 @@
           if(number_of_recharge == "" || age_of_sim == "" || balance_before_recharge == ""){
             alert("Error: empty fields") ;
           }else{
-            $.post( "http://127.0.0.1:5000/formula", { number_of_recharge: number_of_recharge , 
+            $.post( "https://credit-scoring-app.herokuapp.com/formula", { number_of_recharge: number_of_recharge , 
             age_of_sim: age_of_sim, 
             balance_before_recharge: balance_before_recharge }).done(function(data) {
               document.getElementById("credit").innerHTML = "Credit Score: " + data
