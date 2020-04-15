@@ -30,22 +30,23 @@
         <div class="card">
           <div class="card-header">User Information</div>
           <div class="card-body">
-            <form action="/action_page.php">
+            <!-- <form> -->
             <div class="form-group">
               <label for="email">Number of recharge:</label>
-              <input type="number" class="form-control" placeholder="" id="number_of_recharge">
+              <input type="number"  min="0" class="form-control" placeholder="" id="number_of_recharge">
             </div>
             <div class="form-group">
               <label for="pwd">Age of sim:</label>
-              <input type="number" class="form-control" placeholder="" id="age_of_sim">
+              <input type="number"  min="0" class="form-control" placeholder="" id="age_of_sim">
             </div>
             <div class="form-group">
               <label for="pwd">Balance before recharge:</label>
-              <input type="number" class="form-control" placeholder="" id="balance_before_recharge">
+              <input type="number"  class="form-control" placeholder="" id="balance_before_recharge">
             </div>
             <button class="btn btn-primary" onclick="send_user_information()">Submit</button>
-          </form></div>
-          <div class="card-footer">Credit Score: 0</div>
+          <!-- </form> -->
+        </div>
+          <div class="card-footer" id="credit">Credit Score: 0</div>
         </div>
       </div>
       <script>
@@ -54,10 +55,16 @@
           let age_of_sim = document.getElementById("age_of_sim").value ;
           let balance_before_recharge = document.getElementById("balance_before_recharge").value ;
 
-          $.post( "test.php", { number_of_recharge: "John", time: "2pm" }).done(function( data ) {
-            alert( "Data Loaded: " + data );
+          if(number_of_recharge == "" || age_of_sim == "" || balance_before_recharge == ""){
+            alert("Error: empty fields") ;
+          }else{
+            $.post( "http://127.0.0.1:5000/formula", { number_of_recharge: number_of_recharge , 
+            age_of_sim: age_of_sim, 
+            balance_before_recharge: balance_before_recharge }).done(function(data) {
+              document.getElementById("credit").innerHTML = "Credit Score: " + data
+           // alert( "Data Loaded: " + data );
           });
-
+          }
 
         }
       </script>

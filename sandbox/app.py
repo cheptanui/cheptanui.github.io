@@ -1,8 +1,10 @@
 # Written by Viola Melly
 
 from flask import Flask, request
+from flask_cors import CORS
 import Credit_score
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/')
 def index():
@@ -37,4 +39,4 @@ def fico_additive_formula():
 	[[16,20],25],
 	[[21],30]]}
 
-    return Credit_score.credit_score(user_information, score_card)
+    return Credit_score.credit_score(user_information,score_card )
