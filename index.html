@@ -1,54 +1,113 @@
 <html lang="en">
   <head>
     <title>
-      Credit Scoring 
+      Wajibika
     </title>
     <meta charset="utf-8"><!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    
     <!-- Popper JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
   </head>
   <body>
-    <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+    <header>
+      <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <a class="navbar-brand" href="index.html">Wajibika</a>
         <ul class="navbar-nav">
+          &nbsp;
+          &nbsp;
           <li class="nav-item active">
-            <a class="nav-link" href="#">Credit Scoring using FICO additive formula</a>
+            <a class="nav-link" href="index.html">Home</a>
           </li>
-
+          &nbsp;
+          &nbsp;
+          <li class="nav-item active">
+            <a type="button" class="nav-link btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModalCenter">About</a>
+          </li>
         </ul>
       </nav>
-      <br>
-      <div class="container">
-        <div class="card">
-          <div class="card-header">User Information</div>
-          <div class="card-body">
-            <!-- <form> -->
-            <div class="form-group">
-              <label for="email">Number of recharge:</label>
-              <input type="number"  min="0" class="form-control" placeholder="" id="number_of_recharge">
-            </div>
-            <div class="form-group">
-              <label for="pwd">Age of sim:</label>
-              <input type="number"  min="0" class="form-control" placeholder="" id="age_of_sim">
-            </div>
-            <div class="form-group">
-              <label for="pwd">Balance before recharge:</label>
-              <input type="number"  class="form-control" placeholder="" id="balance_before_recharge">
-            </div>
-            <button class="btn btn-primary" onclick="send_user_information()">Submit</button>
-          <!-- </form> -->
+    </header>
+    <section class="container">
+      <div class="row">
+        <div class="col">
+          <br><br><br><br><br><br><br>
+          <h1 style="font-size: 75;">Financial Literacy</h1>
+          <p>Learn more about personal finance</p>
+          <p><a href="learn.html" class="btn btn-outline-dark">Learn more</a></p>
+
         </div>
-          <div class="card-footer" id="credit">Credit Score: 0</div>
+        <div class="col">
+          <div class="row">
+            <div class="col">
+              <br>
+              <h5>Credit Scoring using FICO Additive Formula</h5>
+              <br>
+              <div class="card">
+                <!-- <div class="card-header">User Information</div> -->
+                <div class="card-body">
+                  <!-- <form> -->
+                  <div class="form-group">
+                    <label for="email">Number of recharge:</label>
+                    <input type="number"  min="0" class="form-control" placeholder="" id="number_of_recharge">
+                  </div>
+                  <div class="form-group">
+                    <label for="pwd">Age of sim:</label>
+                    <input type="number"  min="0" class="form-control" placeholder="" id="age_of_sim">
+                  </div>
+                  <div class="form-group">
+                    <label for="pwd">Balance before recharge:</label>
+                    <input type="number"  class="form-control" placeholder="" id="balance_before_recharge">
+                  </div>
+                  <button class="btn btn-dark btn-block" onclick="send_user_information()">Calculate Score</button>
+                <!-- </form> -->
+              </div>
+                <!-- <div class="card-footer" >Credit Score: 0</div> -->
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col">
+              <div class="card">
+                <div class="card-header bg-light"><h5>Credit Score</h5></div>
+                <div class="card-body">
+                  <h1 style="text-align: center;" id="credit">0</h1>
+              </div>
+    
+            </div>
+          </div>
+
         </div>
       </div>
+    </section>
+    <footer>
+      <nav class="navbar navbar-expand-sm bg-light navbar-light fixed-bottom">
+        <a class="navbar-brand" href="#">Wajibika</a>
+      </nav>
+    </footer>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">About</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            Leo urna molestie at elementum eu. Justo donec enim diam vulputate ut pharetra. 
+          </p>
+        </div>
+      </div>
+    </div>
+    </div>
       <script>
         function send_user_information(){
           let number_of_recharge = document.getElementById("number_of_recharge").value ;
@@ -61,7 +120,7 @@
             $.post( "https://credit-scoring-app.herokuapp.com/formula", { number_of_recharge: number_of_recharge , 
             age_of_sim: age_of_sim, 
             balance_before_recharge: balance_before_recharge }).done(function(data) {
-              document.getElementById("credit").innerHTML = "Credit Score: " + data
+              document.getElementById("credit").innerHTML =  data
            // alert( "Data Loaded: " + data );
           });
           }
